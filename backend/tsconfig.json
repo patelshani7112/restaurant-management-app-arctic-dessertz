@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es2016" /* For compatibility with older Node versions */,
+    "module": "commonjs" /* <-- Use CommonJS for Node.js backend */,
+    "moduleResolution": "node" /* <-- Standard Node.js module resolution */,
+    "outDir": "./dist" /* Output directory for compiled JavaScript */,
+    "rootDir": "./src" /* Root directory of your source files */,
+    "esModuleInterop": true /* <-- Essential for interoperability */,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"] /* Include all files in the src directory */,
+  "exclude": [
+    "node_modules",
+    "dist"
+  ] /* Exclude these directories from compilation */
+}
