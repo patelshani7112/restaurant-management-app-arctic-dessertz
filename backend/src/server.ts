@@ -11,10 +11,10 @@ const roleRoutes = require("./routes/roleRoutes");
 const menuRoutes = require("./routes/menuRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const departmentRoutes = require("./routes/departmentRoutes");
-const categoryRoutes = require("./routes/categoryRoutes");
 const subCategoryRoutes = require("./routes/subCategoryRoutes");
 const ingredientCategoryRoutes = require("./routes/ingredientCategoryRoutes");
 const ingredientRoutes = require("./routes/ingredientRoutes");
+const menuCategoryRoutes = require("./routes/menuCategoryRoutes"); // Add this line
 
 dotenv.config();
 
@@ -35,10 +35,10 @@ app.use("/api/roles", roleRoutes);
 app.use("/api/menu", menuRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/departments", departmentRoutes);
-app.use("/api/categories", categoryRoutes);
 app.use("/api/sub-categories", subCategoryRoutes);
 app.use("/api/ingredient-categories", ingredientCategoryRoutes);
 app.use("/api/ingredients", ingredientRoutes);
+app.use("/api/menu-categories", menuCategoryRoutes); // Use the new menuCategoryRoutes
 
 app.listen(PORT, () => {
   console.log(`Backend server listening on port ${PORT}`);

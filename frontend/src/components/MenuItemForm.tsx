@@ -134,11 +134,14 @@ function MenuItemForm({ initialData, onSuccess }: MenuItemFormProps) {
           throw new Error(sessionError?.message || "User not authenticated.");
         }
 
-        const response = await fetch("http://localhost:3000/api/categories", {
-          headers: {
-            Authorization: `Bearer ${session.access_token}`,
-          },
-        });
+        const response = await fetch(
+          "http://localhost:3000/api/menu-categories",
+          {
+            headers: {
+              Authorization: `Bearer ${session.access_token}`,
+            },
+          }
+        );
 
         if (!response.ok) {
           const errorData = await response.json();

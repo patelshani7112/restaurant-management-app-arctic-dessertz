@@ -25,26 +25,37 @@ function Layout() {
             Arctic Dessert Management
           </Link>
           <div className="space-x-4 flex items-center">
-            <Link to="/menu" className="text-gray-600 hover:text-gray-800">
-              Menu
-            </Link>
             {user ? (
               <>
-                <Link
-                  to="/menu/add"
-                  className="text-gray-600 hover:text-gray-800"
-                >
-                  {" "}
-                  {/* <-- ADD THIS LINK */}
-                  Add Item
-                </Link>
-                <span className="text-gray-600">Hello, {user.email}</span>
                 <Link
                   to="/dashboard"
                   className="text-gray-600 hover:text-gray-800"
                 >
                   Dashboard
                 </Link>
+                {/* New links for category management */}
+                <Link
+                  to="/menu-categories"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Menu Categories
+                </Link>
+                <Link
+                  to="/ingredient-categories"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Ingredient Categories
+                </Link>
+                <Link to="/menu" className="text-gray-600 hover:text-gray-800">
+                  Menu Items
+                </Link>
+                <Link
+                  to="/ingredients"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Ingredients
+                </Link>
+                <span className="text-gray-600">Hello, {user.email}</span>
                 <button
                   onClick={handleLogout}
                   className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition duration-200"

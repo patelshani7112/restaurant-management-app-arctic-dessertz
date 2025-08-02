@@ -1,47 +1,3 @@
-// // backend/src/controllers/ingredientCategoryController.ts
-
-// import { Request, Response } from "express";
-
-// import { supabaseAdmin } from "../config/supabaseAdminClient";
-
-// // Controller to get all ingredient categories
-
-// export const getAllIngredientCategories = async (
-//   req: Request,
-
-//   res: Response
-// ) => {
-//   try {
-//     const { data: ingredientCategories, error } = await supabaseAdmin
-
-//       .from("ingredient_categories")
-
-//       .select("*")
-
-//       .order("name", { ascending: true });
-
-//     if (error) {
-//       console.error("Error fetching ingredient categories:", error);
-
-//       return res.status(500).json({ error: error.message });
-//     }
-
-//     res.status(200).json(ingredientCategories);
-//   } catch (err) {
-//     console.error(
-//       "Unexpected error in getAllIngredientCategories controller:",
-
-//       err
-//     );
-
-//     res.status(500).json({ error: "Internal server error." });
-//   }
-// };
-
-// // (Add other functions like create, update, delete if needed later)
-
-// backend/src/controllers/ingredientCategoryController.ts
-
 import { Request, Response } from "express";
 import { supabaseAdmin } from "../config/supabaseAdminClient";
 
@@ -68,6 +24,39 @@ export const getAllIngredientCategories = async (
       err
     );
     res.status(500).json({ error: "Internal server error." });
+  }
+};
+
+// Controller to get a single ingredient category by ID
+export const getIngredientCategoryById = async (
+  req: Request,
+  res: Response
+) => {
+  const { id } = req.params;
+
+  try {
+    const { data, error } = await supabaseAdmin
+      .from("ingredient_categories")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (error) {
+      if (error.code === "PGRST116") {
+        // Supabase error code for no rows found
+        return res
+          .status(404)
+          .json({ error: "Ingredient category not found." });
+      }
+      throw error;
+    }
+
+    return res.status(200).json(data);
+  } catch (err: any) {
+    console.error("Error fetching ingredient category by ID:", err.message);
+    return res
+      .status(500)
+      .json({ error: "Failed to retrieve ingredient category." });
   }
 };
 

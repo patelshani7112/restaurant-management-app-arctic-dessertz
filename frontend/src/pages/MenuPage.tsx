@@ -1,6 +1,7 @@
 // frontend/src/pages/MenuPage.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import apiClient from "../services/apiClient";
 
 // Define the Ingredient interface based on the backend's transformed data
 interface Ingredient {
@@ -53,24 +54,43 @@ function MenuPage() {
     fetchMenuItems();
   }, []);
 
+  // const handleDelete = async (id: string) => {
+  //   if (!window.confirm("Are you sure you want to delete this menu item?")) {
+  //     return;
+  //   }
+
+  //   try {
+  //     const response = await fetch(`http://localhost:3000/api/menu/${id}`, {
+  //       method: "DELETE",
+  //     });
+
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       throw new Error(
+  //         errorData.error || `HTTP error! status: ${response.status}`
+  //       );
+  //     }
+
+  //     setMenuItems(menuItems.filter((item) => item.id !== id));
+  //     alert("Menu item deleted successfully!");
+  //   } catch (err: any) {
+  //     console.error("Failed to delete menu item:", err);
+  //     alert(`Error deleting menu item: ${err.message}`);
+  //   }
+  // };
+
   const handleDelete = async (id: string) => {
     if (!window.confirm("Are you sure you want to delete this menu item?")) {
       return;
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/menu/${id}`, {
-        method: "DELETE",
-      });
+      // Use apiClient.delete() which automatically adds the Authorization header
+      await apiClient.delete(`/menu/${id}`);
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(
-          errorData.error || `HTTP error! status: ${response.status}`
-        );
-      }
-
+      // Update the state to remove the deleted item from the list
       setMenuItems(menuItems.filter((item) => item.id !== id));
+
       alert("Menu item deleted successfully!");
     } catch (err: any) {
       console.error("Failed to delete menu item:", err);

@@ -1,6 +1,5 @@
 // frontend/src/App.tsx
 import React from "react";
-// Remove BrowserRouter and AuthProvider from this import line. They belong in main.tsx.
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
@@ -16,10 +15,16 @@ import IngredientsPage from "./pages/IngredientsPage.tsx";
 import AddIngredientPage from "./pages/AddIngredientPage.tsx";
 import EditIngredientPage from "./pages/EditIngredientPage.tsx";
 
+// New imports for category pages
+import MenuCategoriesPage from "./pages/MenuCategoriesPage.tsx";
+import AddMenuCategoryPage from "./pages/AddMenuCategoryPage.tsx";
+import EditMenuCategoryPage from "./pages/EditMenuCategoryPage.tsx";
+import IngredientCategoriesPage from "./pages/IngredientCategoriesPage.tsx";
+import AddIngredientCategoryPage from "./pages/AddIngredientCategoryPage.tsx";
+import EditIngredientCategoryPage from "./pages/EditIngredientCategoryPage.tsx";
+
 function App() {
   return (
-    // The App component should only contain your routes.
-    // The AuthProvider and BrowserRouter are handled in main.tsx.
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
@@ -63,6 +68,56 @@ function App() {
           element={
             <ProtectedRoute>
               <EditIngredientPage />
+            </ProtectedRoute>
+          }
+        />
+        {/* New Routes for Menu Categories */}
+        <Route
+          path="menu-categories"
+          element={
+            <ProtectedRoute>
+              <MenuCategoriesPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="menu-categories/add"
+          element={
+            <ProtectedRoute>
+              <AddMenuCategoryPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="menu-categories/edit/:id"
+          element={
+            <ProtectedRoute>
+              <EditMenuCategoryPage />
+            </ProtectedRoute>
+          }
+        />
+        {/* New Routes for Ingredient Categories */}
+        <Route
+          path="ingredient-categories"
+          element={
+            <ProtectedRoute>
+              <IngredientCategoriesPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="ingredient-categories/add"
+          element={
+            <ProtectedRoute>
+              <AddIngredientCategoryPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="ingredient-categories/edit/:id"
+          element={
+            <ProtectedRoute>
+              <EditIngredientCategoryPage />
             </ProtectedRoute>
           }
         />
