@@ -248,6 +248,7 @@ import IngredientsPage from "./pages/IngredientsPage";
 import AddIngredientPage from "./pages/AddIngredientPage";
 import EditIngredientPage from "./pages/EditIngredientPage";
 import MenuCategoriesPage from "./pages/MenuCategoriesPage";
+import UserManagementPage from "./pages/UserManagementPage";
 import AddMenuCategoryPage from "./pages/AddMenuCategoryPage";
 import EditMenuCategoryPage from "./pages/EditMenuCategoryPage";
 import IngredientCategoriesPage from "./pages/IngredientCategoriesPage";
@@ -284,10 +285,7 @@ function App() {
         <Route path="dashboard" element={<AdminDashboard />} />
 
         {/* Temporary placeholder pages */}
-        <Route
-          path="user-management"
-          element={<div>User Management Page Coming Soon...</div>}
-        />
+        <Route path="users" element={<UserManagementPage />} />
         <Route
           path="profile"
           element={<div>My Profile Page Coming Soon...</div>}
